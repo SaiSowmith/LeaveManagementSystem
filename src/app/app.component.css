@@ -1,0 +1,90 @@
+.bg{
+    background-image: url("./../../images/bg1.jpg");
+    background-size: contain;
+    background-position: 50% ;
+    width:auto;
+    height: auto;
+}
+
+
+.well{
+    color:rgb(255, 17, 0);
+}
+
+h1{
+
+    font-family: 'Francois One', sans-serif;
+}
+h5{
+    color:red;
+}
+
+h6{
+    color:green;
+}
+
+main{
+    background-color:rgb(177, 221, 238);
+
+}
+body{
+color: rgb(248, 0, 37);}
+button{
+    cursor: pointer;
+}
+
+.dropdown-toggle{
+    cursor:pointer;
+}
+.dropdown-item{
+    cursor:pointer;
+}
+.navbar-brand{
+    cursor:pointer;
+
+}
+
+.jumbotron {
+    padding-top: 0px;
+    margin-top: 0px;
+    background-color:rgb(168, 197, 135);
+    height: auto;
+
+}
+.starter-template{
+    padding-top: 15px;
+    background-color:rgb(171, 204, 241);
+}
+
+
+
+.navbar {
+    margin-top: 0px;
+    border-radius: 0;
+  }
+  
+  /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+  .row.content {height:715px}
+  
+  /* Set gray background color and 100% height */
+  .sidenav {
+    padding-top: 20px;
+    background-color: #d7e429;
+    height: auto;
+  }
+  
+  /* Set black background color, white text and some padding */
+  footer {
+    background-color: #555;
+    color: white;
+    padding: 5px;
+  }
+  
+  /* On small screens, set height to 'auto' for sidenav and grid */
+  @media screen and (max-width: 767px) {
+    .sidenav {
+      height: auto;
+      padding: 15px;
+    }
+    .row.content {height:auto;} 
+  }

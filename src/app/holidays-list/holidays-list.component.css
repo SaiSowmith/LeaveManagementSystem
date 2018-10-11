@@ -1,0 +1,105 @@
+
+.dropdown-toggle{
+  cursor:pointer;
+}
+.dropdown-item{
+  cursor:pointer;
+}
+.navbar-brand{
+  cursor:pointer;
+
+}
+/* Remove the navbar's default margin-bottom and rounded borders */ 
+.navbar {
+    margin-bottom: 0;
+    padding: 0px;
+    margin-top: 0px;
+
+    border-radius: 0.1;
+  }
+  
+  /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+  .row.content {height: 671px}
+  
+  /* Set gray background color and 100% height */
+  .sidenav {
+    padding-top: 20px;
+    background-color: #f1f1f1;
+    height: 100%;
+  }
+  
+  /* Set black background color, white text and some padding */
+  footer {
+    background-color: #555;
+    color: white;
+    padding: 5px;
+  }
+  
+  /* On small screens, set height to 'auto' for sidenav and grid */
+  @media screen and (max-width: 767px) {
+    .sidenav {
+      height: auto;
+      padding: 15px;
+    }
+    .row.content {height:auto;} 
+  }
+
+  .tg {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border-color: #bbb;
+  }
+
+  .tg td {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    padding: 10px 5px;
+    border-style: solid;
+    border-width: 1px;
+    overflow: hidden;
+    word-break: normal;
+    border-color: #bbb;
+    color: #594F4F;
+    background-color: #E0FFEB;
+  }
+
+  .tg th {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    padding: 10px 5px;
+    border-style: solid;
+    border-width: 1px;
+    overflow: hidden;
+    word-break: normal;
+    border-color: #bbb;
+    color: #493F3F;
+    background-color: #9DE0AD;
+  }
+
+  .tg .tg-996f {
+    background-color: #C2FFD6;
+    border-color: inherit;
+    text-align: center;
+    vertical-align: top
+  }
+
+  .tg .tg-q8ud {
+    background-color: #C2FFD6;
+    border-color: inherit;
+    text-align: left;
+    vertical-align: top
+  }
+
+  .tg .tg-c3ow {
+    border-color: inherit;
+    text-align: center;
+    vertical-align: top
+  }
+
+  .tg .tg-7btt {
+    font-weight: bold;
+    border-color: inherit;
+    text-align: center;
+    vertical-align: top
+  }

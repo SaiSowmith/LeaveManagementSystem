@@ -1,0 +1,138 @@
+<link href="https://fonts.googleapis.com/css?family=Ewert|Zilla+Slab+Highlight" rel="stylesheet">
+
+<div class="container-fluid">
+  <div class="row content">
+
+    <div>
+
+      <h2>Search Based List</h2>
+      <input class="form-control" type="text" [(ngModel)]="filter" placeholder="Search...">
+
+      <div *ngFor="let item of mf.data |filter:filter">
+        <table class="table table-bordered table-hover table-responsive  table-condensed table-striped">
+          <thead>
+            <tr class="info">
+              <th> Name: </th>
+              <td>{{item?.name}}</td>
+
+              <th> Company:</th>
+              <td>{{item?.company}}</td>
+
+              <th>Id:</th>
+              <td>{{item?.id}}</td>
+
+              <th>Total Leave:</th>
+              <td>{{item?.totalleave}}</td>
+
+              <th>Leave From:</th>
+              <td>{{item?.leavefrom}}</td>
+
+              <th>Leave To:</th>
+              <td>{{item?.leaveto}}</td>
+
+              <th>Day Type:</th>
+              <td>{{item?.dayType}}</td>
+
+              <th> Reason:</th>
+              <td>{{item?.reason}}</td>
+
+
+            </tr>
+          </thead>
+        </table>
+      </div>
+
+    </div>
+
+    <h1>List of Leave-Status</h1>
+
+    <table class="table table-bordered table-hover table-responsive table-condensed table-striped" [mfData]="data" #mf="mfDataTable"
+      [mfRowsOnPage]="5" [mfSaveRowsOnPage]="true" (mfSelectedEntities)="setSelectedEntities($event)">
+      <thead>
+        <tr class="danger">
+
+          <th style="width: 10%">
+            <mfDefaultSorter by="name" [mfShowSortableArrows]="true">Name</mfDefaultSorter>
+          </th>
+          <th style="width: 10%">
+            <mfDefaultSorter by="company" [mfShowSortableArrows]="true">Company</mfDefaultSorter>
+          </th>
+          <th style="width: 10%">
+            <mfDefaultSorter by="id" [mfShowSortableArrows]="true">Id Card No</mfDefaultSorter>
+          </th>
+          <th style="width: 10%">
+            <mfDefaultSorter by="id" [mfShowSortableArrows]="true">Type of Leave</mfDefaultSorter>
+          </th>
+          <th style="width: 10%">
+            <mfDefaultSorter by="totalleave" [mfShowSortableArrows]="true">Total Leaves required</mfDefaultSorter>
+          </th>
+          <th style="width: 10%">
+            <mfDefaultSorter by="leavefrom" [mfShowSortableArrows]="true">Leave From</mfDefaultSorter>
+          </th>
+          <th style="width: 10%">
+            <mfDefaultSorter by="leaveto" [mfShowSortableArrows]="true">Leave To</mfDefaultSorter>
+          </th>
+          <th style="width: 10%">
+            <mfDefaultSorter by="dayType" [mfShowSortableArrows]="true">Full Day or Half Day</mfDefaultSorter>
+          </th>
+          <th style="width: 10%">
+            <mfDefaultSorter by="reason" [mfShowSortableArrows]="true">Reason for Leave</mfDefaultSorter>
+          </th>
+
+          <th style="width: 10%">
+            <mfDefaultSorter by="reason" [mfShowSortableArrows]="true">Status</mfDefaultSorter>
+          </th>
+          <th style="width: 10%">
+            <mfDefaultSorter by="reason" [mfShowSortableArrows]="true">Comment</mfDefaultSorter>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr class="success" *ngFor="let item of mf.data| paginate: { itemsPerPage: 10, currentPage: p }; let ndx = index">
+
+          <td>{{item?.name}}</td>
+          <td>{{item?.company}}</td>
+          <td>{{item?.id}}</td>
+          <td>{{item?.typeofleave}}</td>
+          <td>{{item?.totalleave}}</td>
+          <td>{{item?.leavefrom}}</td>
+          <td>{{item?.leaveto}}</td>
+          <td>{{item?.dayType}}</td>
+          <td>{{item?.reason}}</td>
+          <td> <b>{{item?.status}}</b> </td>
+          <td> <b>{{item?.comment}}</b> </td>
+
+          <!-- <td>
+            <button class="btn" *ngIf="!item.status" (click)="updateStatus(item, true)">Approve</button>
+            <button class="btn" *ngIf="item.status" (click)="updateStatus(item, false)">Reject</button>
+          </td> -->
+      <!--<td>
+            <strong ng-show="item.approve == ''" class="text-info cap">waiting</strong>
+            <strong ng-show="item.approve == 'deny'" class="text-danger cap">{{item.approve}}</strong>
+            <strong ng-show="item.approve == 'approve'" class="text-success cap">{{item.approve}}</strong>
+          </td> -->
+        </tr>
+      </tbody>
+
+      <tfoot>
+        <tr>
+          <td colspan="14">
+            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+          </td>
+        </tr>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </tfoot>
+
+    </table>
+
+
+  </div>
+
+  <div class="container">
+    <ul class="pager">
+      <li class="next" class="btn btn-primary"><a routerLink="/home">Back</a></li>
+    </ul>
+  </div>
+
+</div>

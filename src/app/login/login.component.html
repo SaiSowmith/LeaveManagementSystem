@@ -1,0 +1,100 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" routerLink="/home/">LMS</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="myNavbar">
+
+      <ul class="nav navbar-nav">
+        <li class="active"><a routerLink="/after-login/">Home</a></li>
+        <li><a routerLink="#">About</a></li>
+        <li><a routerLink="#">Projects</a></li>
+        <li><a routerLink="/contact/">Contact Us</a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a routerLink="/sign-up/"><span class="glyphicon glyphicon-user"></span> Sign-Up</a></li>
+        <li><a routerLink="/login/"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+
+    </div>
+
+  </div>
+</nav>
+
+
+<div class="bg">
+  <div class="container-fluid ">
+    <div class="row content">
+
+      <div class="main__body">
+        <div class="login-container">
+
+          <div class="login__page">
+            <div class="row">
+              <div class="card col-md-4 col-md-offset-4">
+                <div class="login__card">
+                  <div class="well bs-component wrapper">
+
+                    <form #formCtrl="ngForm">
+                      <h2 align="center">Login Form</h2>
+
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter your EmailId"
+                          name="email" [(ngModel)]="user.email" #email="ngModel" required email>
+                        <div class=" alert alert-danger" *ngIf="email.touched && email.invalid">
+                          <div *ngIf="email.errors.required">*Email is required</div>
+                          <div *ngIf="email.errors.email">*Enter valid emailID!</div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter your Password"
+                          name="password" [(ngModel)]="user.password" #password="ngModel" required>
+                        <div class=" alert alert-danger" *ngIf="password.touched && password.invalid">
+                          <div *ngIf="password.errors.required">*Password is required</div>
+                          <div *ngIf="password.errors.minlength">*Password length should be atleast 6</div>
+                          <div *ngIf="password.errors.maxlength">*Password length should be atmost 15</div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <button (click)="signInWithEmail()" [disabled]="formCtrl.form.invalid" type="buton" class="btn btn-primary btn-block"
+                          style="margin-bottom: 20px">
+                          Login
+                        </button>
+
+                        <h4 align="center">OR</h4>
+
+                        <button (click)="login()" [disabled]="formCtrl.form.invalid" type="buton" class="btn btn-primary btn-block"
+                          style="margin-bottom: 20px">
+                          Login with Google
+                        </button>
+                        
+                        <div class="border-top card-body text-center">New user ??? Create account here? <a href="/sign-up">SignUp</a>
+                        </div>
+                      </div>
+
+                    </form>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

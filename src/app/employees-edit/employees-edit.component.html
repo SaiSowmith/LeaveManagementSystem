@@ -1,0 +1,92 @@
+<link href="https://fonts.googleapis.com/css?family=Ewert|Zilla+Slab+Highlight" rel="stylesheet">
+
+<div class="container-fluid">
+  <div class="row content">
+
+    <h3>For adding new employee click below</h3>
+    <p>
+      <button routerLink="/employees-form" class="btn btn-primary">New Employee</button>
+    </p>
+
+    <div>
+
+      <h2>Search Based List</h2>
+      <input class="form-control" type="text" [(ngModel)]="filter" placeholder="Search">
+
+      <div *ngFor="let item of mf.data |filter:filter">
+        <table class="table table-bordered table-hover table-responsive table-condensed table-striped">
+          <thead>
+            <tr class="info">
+              <th> Employee ID: </th>
+              <td>{{item?.empid}}</td>
+
+              <th> Name:</th>
+              <td>{{item?.name}}</td>
+
+              <th> edit:</th>
+              <td> <a [routerLink]="['/employees',item.key]">click to edit</a> </td>
+              <!-- <th>Edit Option</th>
+              <td> <a [routerLink]="['/employees',item.key]">Edit</a></td> -->
+            </tr>
+          </thead>
+        </table>
+      </div>
+
+    </div>
+
+    <h1> For Editting Employee..</h1>
+
+    <table class="table table-bordered table-hover table-responsive table-condensed table-striped" [mfData]="data" #mf="mfDataTable"
+      [mfRowsOnPage]="5" [mfSaveRowsOnPage]="true" (mfSelectedEntities)="setSelectedEntities($event)">
+      <thead>
+        <tr class="danger">
+          <th style="width: 10%">
+            <mfRowSelectorHead></mfRowSelectorHead>
+          </th>
+          <th style="width: 10%">
+            <mfDefaultSorter by="empid" [mfShowSortableArrows]="true">Employee ID</mfDefaultSorter>
+          </th>
+          <th style="width:10">
+            <mfDefaultSorter by="name" [mfShowSortableArrows]="true">Name</mfDefaultSorter>
+          </th>
+          <th style="width:10">
+            <mfDefaultSorter by="item.key" [mfShowSortableArrows]="true">EDIT</mfDefaultSorter>
+          </th>
+
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr class="success" *ngFor="let item of mf.data | paginate: { itemsPerPage: 10, currentPage: p }; let ndx = index">
+          
+          <td>
+            <mfRowSelector [entity]="item" [checkboxId]="ndx"></mfRowSelector>
+          </td>
+          <td>{{item?.empid}}</td>
+          <td>{{item?.name}}</td>
+          <!-- <td> <a [routerLink]="['/employees',item.key]">Edit</a> </td> -->
+          <td> <button class="btn btn-info" [routerLink]="['/employees',item.key]">Edit</button> </td>
+
+        </tr>
+      </tbody>
+
+      <tfoot>
+        <tr>
+          <td colspan="4">
+            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+          </td>
+        </tr>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </tfoot>
+
+    </table>
+
+  </div>
+
+  <div class="container">
+    <ul class="pager">
+      <li class="next" class="btn btn-primary"><a routerLink="/home">Back</a></li>
+    </ul>
+  </div>
+
+</div>

@@ -1,0 +1,154 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" routerLink="/home/">LMS</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a routerLink="/after-login/">Home</a></li>
+        <li><a routerLink="#">About</a></li>
+        <li><a routerLink="#">Projects</a></li>
+        <li><a routerLink="/contact/">Contact Us</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a routerLink="/sign-up/"><span class="glyphicon glyphicon-user"></span> Sign-Up</a></li>
+        <li><a routerLink="/login/"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div class="bg">
+  <div class="row justify-content-center">
+    <div class="container">
+
+      <div class="login__page">
+        <div class="row">
+          <div class="card col-md-4 col-md-offset-4">
+            <div class="login__card">
+              <div class="well bs-component wrapper">
+                <form ngNativeValidate #f="ngForm" (ngSubmit)="save(f.value)">
+                  <h3 align="center">Register Form</h3>
+                  <header class="card-header">
+                    <h4 class="card-title mt-2">Sign up/Register here..</h4>
+                  </header>
+
+                  <div class="form-group">
+                    <label>First name </label>
+                    <input type="text" class="form-control" placeholder="FirstName" id="first" name="first" #first="ngModel"
+                      [(ngModel)]="registers.first" required [minlength]="[2]" [maxlength]="[15]">
+                    <div class=" alert alert-danger" *ngIf="first.touched && first.invalid">
+                      <div *ngIf="first.errors.required">*First name is required</div>
+                      <div *ngIf="first.errors.minlength">*Character length should be atleast 2</div>
+                      <div *ngIf="first.errors.maxlength">*Character length should not exceed 15</div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Last name</label>
+                    <input #last="ngModel" type="text" class="form-control" id="exampleInputLast" placeholder="LastName"
+                      name="last" [(ngModel)]="registers.last" #last="ngModel" required [minlength]="[2]" [maxlength]="[15]">
+                    <div class=" alert alert-danger" *ngIf="last.touched && last.invalid">
+                      <div *ngIf="last.errors.required">*Last name is required</div>
+                      <div *ngIf="last.errors.minlength">*Character length should be atleast 2</div>
+                      <div *ngIf="last.errors.maxlength">*Character length should not exceed 15</div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Gender</label><br>
+                    <label class="form-check form-check-inline">
+
+                      <input #gender="ngModel" class="form-check-input" type="radio" name="gender" value="male"
+                        [(ngModel)]="registers.gender" #gender="ngModel" checked="checked" required>
+                      <span class="form-check-label"> Male </span>
+
+                    </label>
+                    <label class="form-check form-check-inline">
+                      <input #gender="ngModel" class="form-check-input" type="radio" name="gender" value="female"
+                        [(ngModel)]="registers.gender" #gender="ngModel" checked="checked" required>
+
+                      <span class="form-check-label"> Female</span>
+                    </label>
+
+                  </div>
+
+                  <div class="form-group">
+                    <label for="select">Department</label>
+
+                    <select #department="ngModel" [(ngModel)]="registers.department" class="form-control" id="department"
+                      name="department" required>
+                      <option value="" disabled selected>Select</option>
+                      <option value="hr">HR</option>
+                      <option value="it">IT</option>
+                      <option value="office">Office</option>
+                      <option value="marketing">Marketing</option>
+                      <option value="security">Security</option>
+                    </select>
+                    <div class=" alert alert-danger" *ngIf="department.touched && department.invalid">
+                      * Department is required
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="select">Country</label>
+                    <select #country="ngModel" [(ngModel)]="registers.country" class="form-control" id="country" name="country"
+                      required>
+                      <option value="" disabled selected>Select</option>
+                      <option value="India">India</option>
+                      <option value="US">United States</option>
+                    </select>
+                    <div class=" alert alert-danger" *ngIf="country.touched && country.invalid">
+                      * Country is required
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" name="email"
+                      [(ngModel)]="user.email" [(ngModel)]="registers.email" #email="ngModel" required email>
+                    <div class=" alert alert-danger" *ngIf="email.touched && email.invalid">
+                      <div *ngIf="email.errors.required">*Email is required</div>
+                      <div *ngIf="email.errors.email">*Enter valid emailID!</div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password"
+                      [(ngModel)]="user.password" [(ngModel)]="registers.password" #password="ngModel" required
+                      [minlength]="[6]" [maxlength]="[15]">
+                    <div class=" alert alert-danger" *ngIf="password.touched && password.invalid">
+                      <div *ngIf="password.errors.required">*Password is required</div>
+                      <div *ngIf="password.errors.minlength">*Password length should be atleast 6</div>
+                      <div *ngIf="password.errors.maxlength">*Password length should be atmost 15</div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <button (click)="onSubmit()" type="buton" class="btn btn-primary btn-block" style="margin-bottom: 20px">
+                      SIGN UP
+                    </button>
+                  </div>
+
+                  <small class="text-muted">By clicking the 'Sign Up' button, you confirm that you accept our <br>
+                    Terms of use and Privacy Policy.</small>
+                  <div class="border-top card-body text-center">Already have an account? <a routerLink="/login/">Log In</a></div>
+
+
+                </form>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,103 @@
+<link href="https://fonts.googleapis.com/css?family=Ewert|Zilla+Slab+Highlight" rel="stylesheet">
+
+<div class="container-fluid">
+  <div class="row content">
+    <div>
+      <h2>Search Based List</h2>
+      <input class="form-control" type="text" [(ngModel)]="filter" placeholder="Search...">
+      <div *ngFor="let item of mf.data |filter:filter">
+        <table class="table table-bordered table-hover table-responsive table-condensed table-striped">
+          <thead>
+
+            <tr class="info">
+              <th> Email: </th>
+              <td>{{item?.email}}</td>
+
+              <th> Name:</th>
+              <td>{{item?.name}}</td>
+
+              <th>Is Admin?</th>
+              <td>{{item?.isAdmin}}</td>
+
+              <th>UID</th>
+              <td>{{item?.uid}}</td>
+
+              <th>Is Anonymous:</th>
+              <td>{{item?.isAnonymous}}</td>
+
+              <th>Verified:</th>
+              <td>{{item?.verified}}</td>
+
+            </tr>
+          </thead>
+        </table>
+      </div>
+
+    </div>
+    <h1>List Of Signed In Employees</h1>
+
+    <table class="table table-bordered table-hover table-responsive table-condensed table-striped" [mfData]="data" #mf="mfDataTable"
+      [mfRowsOnPage]="5" [mfSaveRowsOnPage]="true" (mfSelectedEntities)="setSelectedEntities($event)">
+      <thead>
+        <tr class="danger">
+          <th style="width: 10%">
+            <mfRowSelectorHead></mfRowSelectorHead>
+          </th>
+          <th style="width: 20%">
+            <mfDefaultSorter by="email" [mfShowSortableArrows]="true">Email</mfDefaultSorter>
+          </th>
+          <th style="width: 10%">
+            <mfDefaultSorter by="first" [mfShowSortableArrows]="true">Name</mfDefaultSorter>
+          </th>
+          <th style="width: 10%">
+            <mfDefaultSorter by="first" [mfShowSortableArrows]="true">Is Admin?</mfDefaultSorter>
+          </th>
+          <th style="width:10">
+            <mfDefaultSorter by="last" [mfShowSortableArrows]="true">UID</mfDefaultSorter>
+          </th>
+          <th style="width: 10">
+            <mfDefaultSorter by="gender" [mfShowSortableArrows]="true">Is Anonymous</mfDefaultSorter>
+          </th>
+          <th style="width: 10">
+            <mfDefaultSorter by="department" [mfShowSortableArrows]="true">Verified</mfDefaultSorter>
+          </th>
+
+
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr class="success" *ngFor="let item of mf.data | paginate: { itemsPerPage: 10, currentPage: p }; let ndx = index">
+          <td>
+            <mfRowSelector [entity]="item" [checkboxId]="ndx"></mfRowSelector>
+          </td>
+          <td>{{item?.email}}</td>
+          <td>{{item?.name}}</td>
+          <td>{{item?.isAdmin}}</td>
+          <td>{{item?.uid}}</td>
+          <td>{{item?.isAnonymous}}</td>
+          <td>{{item?.verified}}</td>
+
+        </tr>
+      </tbody>
+
+      <tfoot>
+        <tr>
+          <td colspan="7">
+            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+          </td>
+        </tr>
+
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </tfoot>
+    </table>
+
+  </div>
+
+  <div class="container">
+    <ul class="pager">
+      <li class="next" class="btn btn-primary"><a routerLink="/home">Back</a></li>
+    </ul>
+  </div>
+
+</div>

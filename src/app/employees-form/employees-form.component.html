@@ -1,0 +1,311 @@
+<link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One" rel="stylesheet">
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" routerLink="/home/">Dashboard</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="myNavbar">
+
+      <ul class="nav navbar-nav">
+        <li class="active"><a routerLink="/after-login/">Home</a></li>
+        <li><a routerLink="#">About</a></li>
+        <li><a routerLink="#">Projects</a></li>
+        <li><a routerLink="/contact/">Contact Us</a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+
+        <ng-template #anonymousUser>
+          <li *ngIf="!(appUser$ | async)" class="nav-item active">
+            <a class="navbar-brand" routerLink="login">Login</a>
+          </li>
+        </ng-template>
+
+        <li ngbDropdown class="dropdown">
+          <a ngbDropdownToggle class="dropdown-toggle" data-toggle="dropdown">{{appUser.email}}
+            <span class="caret"></span></a>
+          <ul ngbDropdownMenu class="dropdown-menu">
+            <li><a class="dropdown-item" (click)="logout()">Log Out</a></li>
+          </ul>
+        </li>
+
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a class="dropdown-item" (click)="logout()">Log Out</a></li>
+      </ul>
+
+    </div>
+
+  </div>
+</nav>
+
+
+<div class="container-fluid">
+  <div class="row content">
+    <div class="row">
+      <div class="col-md-6">
+
+        <form ngNativeValidate #f="ngForm" (ngSubmit)="save(f.value)">
+          <legend>Employee Form</legend>
+
+          <div class="form-group">
+            <label for="empid" class="col-lg-4 control-label">Employee Id</label>
+            <div class="col-lg-6">
+
+              <input #empid="ngModel" [(ngModel)]="employee.empid" name="empid" id="empid" type="number" class="form-control"
+                required [min]="0">
+
+              <div class="alert alert-danger" *ngIf="empid.touched && empid.invalid">
+                <div *ngIf="empid.errors.required"> *Id is required</div>
+                <div *ngIf="empid.errors.min"> *Id should be positive</div>
+              </div>
+
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <label for="first_name" class="col-lg-4 control-label">First Name:</label>
+            <div class="col-lg-6">
+
+              <input #first_name="ngModel" [(ngModel)]="employee.first_name" id="first_name" type="text" name="first_name"
+                class="form-control" placeholder="First Name" required [minlength]="[2]" [maxlength]="[15]">
+
+              <div class=" alert alert-danger" *ngIf="first_name.touched && first_name.invalid">
+                <div *ngIf="first_name.errors.required">*First name is required</div>
+                <div *ngIf="first_name.errors.minlength">*Character length should be atleast 2</div>
+                <div *ngIf="first_name.errors.maxlength">*Character length should not exceed 15</div>
+              </div>
+
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <label for="last_name" class="col-lg-4 control-label">Last Name:</label>
+            <div class="col-lg-6">
+
+              <input #last_name="ngModel" [(ngModel)]="employee.last_name" type="text" name="last_name" ng-model="vm.empData.last_name"
+                class="form-control" placeholder="Last Name" required [minlength]="[2]" [maxlength]="[15]">
+
+              <div class=" alert alert-danger" *ngIf="last_name.touched && last_name.invalid">
+                <div *ngIf="last_name.errors.required">*Last Name is required</div>
+                <div *ngIf="last_name.errors.minlength">*Character length should be atleast 2</div>
+                <div *ngIf="last_name.errors.maxlength">*Character length should not exceed 15</div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-lg-4 control-label" for="name">Employee Name</label>
+            <div class="col-lg-6">
+
+              <input #name="ngModel" [(ngModel)]="employee.name" name="name" id="name" type="text" class="form-control"
+                required [minlength]="[2]" [maxlength]="[20]">
+
+              <div class=" alert alert-danger" *ngIf="name.touched && name.invalid">
+                <div *ngIf="name.errors.required">* Name is required</div>
+                <div *ngIf="name.errors.minlength">*Character length should be atleast 2</div>
+                <div *ngIf="name.errors.maxlength">*Character length should not exceed 15</div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-lg-4 control-label">Username:</label>
+            <div class="col-lg-6">
+
+              <input #username="ngModel" [(ngModel)]="employee.username" type="text" name="username" ng-model="vm.empData.username"
+                class="form-control" placeholder="Username" required [minlength]="[5]" [maxlength]="[15]">
+
+              <div class=" alert alert-danger" *ngIf="username.touched && username.invalid">
+                <div *ngIf="username.errors.required">* UserName is required</div>
+                <div *ngIf="username.errors.minlength">*Character length should be atleast 5</div>
+                <div *ngIf="username.errors.maxlength">*Character length should not exceed 15</div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-lg-4 control-label">Mobile:</label>
+            <div class="col-lg-6">
+
+              <input #mobile="ngModel" [(ngModel)]="employee.mobile" type="tel" name="mobile" ng-model="vm.empData.mobile"
+                class="form-control" placeholder="Mobile" required number [maxlength]="10">
+
+              <div class=" alert alert-danger" *ngIf="mobile.touched && mobile.invalid">
+                <div *ngIf="mobile.errors.required">* Mobile Number is required</div>
+                <div *ngIf="mobile.errors.number">* Enter digits only!</div>
+                <div *ngIf="mobile.errors.maxlength">* Enter only 10 digits of your mobile numer!</div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-lg-4 control-label">Email:</label>
+            <div class="col-lg-6">
+
+              <input #email="ngModel" [(ngModel)]="employee.email" type="email" name="email" ng-model="vm.empData.email"
+                class="form-control" placeholder="Email" required email>
+
+              <div class=" alert alert-danger" *ngIf="email.touched && email.invalid">
+                <div *ngIf="email.errors.required">*Email is required</div>
+                <div *ngIf="email.errors.email">*Enter valid emailID!</div>
+              </div>
+
+            </div>
+          </div>
+
+
+          <div class="form-group" ng-class="{ 'has-error' : empForm.gender.$invalid && !empForm.gender.$pristine }">
+            <label class="col-lg-4 control-label">Gender</label>
+            <div class="col-lg-6">
+
+              <div class="radio">
+                <label>
+                  <input #gender="ngModel" [(ngModel)]="employee.gender" type="radio" name="gender" ng-model="vm.empData.gender"
+                    value="male" checked="checked" required>
+                  Male
+                </label>
+              </div>
+
+              <div class="radio">
+                <label>
+                  <input [(ngModel)]="employee.gender" type="radio" name="gender" ng-model="vm.empData.gender" value="female">                
+                  Female
+                </label>
+
+                <div class=" alert alert-danger" *ngIf="gender.touched && gender.invalid">
+                  * gender is required
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <label class="col-lg-4 control-label">Date of Birth:</label>
+            <div class="col-lg-6">
+
+              <input #dob="ngModel" [(ngModel)]="employee.dob" type="date" name="dob" ng-model="vm.empData.dob" class="form-control"
+                placeholder="dob" required date>
+
+              <div class=" alert alert-danger" *ngIf="dob.touched && dob.invalid">
+                <div *ngIf="dob.errors.required">*DOB is required</div>
+                <div *ngIf="dob.errors.date">*Enter valid Date!</div>
+              </div>
+
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <label for="select" class="col-lg-4 control-label">Department</label>
+            <div class="col-lg-6">
+
+              <select #department="ngModel" [(ngModel)]="employee.department" class="form-control" id="department" name="department"
+                ng-model="vm.empData.department" required>
+                <option value="" disabled selected>Select</option>
+                <option value="hr">HR</option>
+                <option value="it">IT</option>
+                <option value="office">Office</option>
+                <option value="marketing">Marketing</option>
+                <option value="security">Security</option>
+                <!-- <option value=""></option>
+                                            <option *ngFor="let d of departments$ | async" [value]="d.$key">
+                                              {{d.select}}
+                                            </option> -->
+              </select>
+
+              <div class=" alert alert-danger" *ngIf="department.touched && department.invalid">
+                * Department is required
+              </div>
+
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <label for="select" class="col-lg-4 control-label" required>Role</label>
+            <div class="col-lg-6">
+
+              <select #role="ngModel" [(ngModel)]="employee.role" class="form-control" id="role" name="role" ng-model="vm.empData.role"
+                required>
+                <option value="" disabled selected>Select</option>
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
+              </select>
+
+              <div class=" alert alert-danger" *ngIf="role.touched && role.invalid">
+                * Role is required
+              </div>
+
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-lg-4 control-label">Password</label>
+            <div class="col-lg-6">
+
+              <input #password="ngModel" [(ngModel)]="employee.password" type="password" class="form-control" name="password"
+                ng-model="vm.empData.password" placeholder="Password" required [minlength]="[6]" [maxlength]="[15]">
+
+              <div class=" alert alert-danger" *ngIf="password.touched && password.invalid">
+                <div *ngIf="password.errors.required">*Password is required</div>
+                <div *ngIf="password.errors.minlength">*Password length should be atleast 6</div>
+                <div *ngIf="password.errors.maxlength">*Password length should be atmost 15</div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <button class="btn btn-primary">Save</button>
+            <button type="button" (click)="delete()" class="btn btn-danger">Delete</button>
+            <button routerLink="/home" class="btn btn-info">Back</button>
+          </div>
+
+        </form>
+      </div>
+
+      <div class="col-md-6">
+        <div *ngIf="employee.empid" class="card" style="width: 18rem;">
+          <h2>Complete Employee Details:</h2>
+          <!-- <img class="card-img-top" src=".../100px180/" > -->
+          <div class="card-body">
+            <h5 class="card-title">{{employee.empid}}</h5>
+            <h5 class="card-title">{{employee.first_name}}</h5>
+            <h5 class="card-title">{{employee.last_name}}</h5>
+            <h5 class="card-title">{{employee.name}}</h5>
+            <h5 class="card-title">{{employee.username}}</h5>
+            <h5 class="card-title">{{employee.mobile}}</h5>
+            <h5 class="card-title">{{employee.email}}</h5>
+            <h5 class="card-title">{{employee.gender}}</h5>
+            <h5 class="card-title">{{employee.dob}}</h5>
+            <h5 class="card-title">{{employee.department}}</h5>
+            <h5 class="card-title">{{employee.role}}</h5>
+            <h5 class="card-title">{{employee.password}}</h5>
+
+            <p class="card-text"></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

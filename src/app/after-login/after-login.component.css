@@ -1,0 +1,77 @@
+p{
+    font-family: 'Harmattan', sans-serif;
+}
+h5{
+    color:red;
+}
+h3{
+    color: red;
+}
+h6{
+    color:green;
+}
+h1{
+    font-family: 'Bree Serif', serif;
+}
+main{
+    background-color:rgb(177, 221, 238);
+
+}
+body{
+color: rgb(248, 0, 37);}
+
+.dropdown-toggle{
+    cursor:pointer;
+}
+.dropdown-item{
+    cursor:pointer;
+}
+.navbar-brand{
+    cursor:pointer;
+
+}
+.jumbotron {
+    background-color:rgb(236, 170, 95);
+}
+.starter-template{
+    color: rgb(248, 0, 37);
+    background-color:rgb(177, 238, 223);
+}
+
+/* Remove the navbar's default margin-bottom and rounded borders */ 
+.navbar {
+    margin-bottom: 0;
+    padding: 0px;
+    margin-top: 0px;
+  
+    border-radius: 0.1;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 715px;}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 5px;
+  
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+  
+      

@@ -1,0 +1,99 @@
+<div class="row">
+	<div class="col-md-12 ">
+		<div class="page-header title-header">
+			<div class="row">
+				<div class="col-md-6">
+					<h2 class="text-left">Leave Form </h2>
+				</div>
+				<div class="col-md-6">
+					<h4 class="text-right">Welcome {{vm.usr['first_name']}} {{vm.usr['last_name']}} !</h4>
+				</div>
+			</div>
+		</div>
+
+		<div class="well bs-component wrapper">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					
+
+					<form class="form-horizontal frm-leave" name="leaveForm" ng-submit="vm.deleteLeave(leaveForm.$valid)" novalidate>
+			   			<fieldset>
+							<legend>Leave Form</legend>
+
+							<input type="hidden" value="{{vm.usr['id']}}" ng-init="vm.leaveData.emp_id=vm.usr['id']"/>
+
+							<div class="form-group">
+							  <label class="col-lg-4 control-label">Name</label>:</label>
+							  <div class="col-lg-6">
+							    <input type="text" value="{{vm.leaveData.username}}" class="form-control"  readonly="readonly">
+							  </div>
+							</div>
+
+							<div class="form-group">
+							  <label class="col-lg-4 control-label">Department</label>:</label>
+							  <div class="col-lg-6">
+							    <input type="text" value="{{vm.leaveData.department}}" class="form-control" readonly="readonly">
+							  </div>
+							</div>
+
+							<div class="form-group">
+						      <label for="select" class="col-lg-4 control-label">Leave Type</label>
+						      <div class="col-lg-6">
+						        <input type="text" name="start_date" value="{{vm.leaveData.leave_type}}" class="form-control"  readonly="readonly">
+						      </div>
+						    </div>
+						    <div class="form-group">
+							  <label class="col-lg-4 control-label">Start Date</label>:</label>
+							  <div class="col-lg-6">
+							    <input type="text" name="start_date" value="{{vm.leaveData.start_date}}" class="form-control"  readonly="readonly">
+							  </div>
+							</div>
+
+							<div class="form-group">
+							  <label class="col-lg-4 control-label">End Date</label>:</label>
+							  <div class="col-lg-6">
+							    <input type="text" name="end_date" value="{{vm.leaveData.end_date}}" class="form-control"  readonly="readonly">
+							  </div>
+							</div>
+
+							
+							<div class="form-group">
+							  <label class="col-lg-4 control-label">Reason:</label>
+							  <div class="col-lg-6">
+							    <textarea name="reason" id="reason" cols="30" rows="3" class="form-control"    readonly="readonly">{{vm.leaveData.reason}}</textarea>
+							  </div>
+							</div>
+							<div class="form-group"  ng-class="{ 'has-error' : leaveForm.leave_type.$invalid && !leaveForm.leave_type.$pristine }">
+						      <label for="select" class="col-lg-4 control-label">Grant</label>
+						      <div class="col-lg-6">
+						        <select class="form-control" id="approve" name="approve" ng-model="vm.leaveData.approve" disabled>
+						          <option value="" disabled selected>Select</option>
+							      <option value="approve">Approve</option>
+							      <option value="deny">Deny</option>
+							    </select>
+						      </div>
+						    </div>
+							<div class="form-group"  ng-class="{ 'has-error' : leaveForm.comment.$invalid && !leaveForm.comment.$pristine }">
+							  <label class="col-lg-4 control-label">Comment:</label>
+							  <div class="col-lg-6">
+							    <textarea name="comment" id="comment" ng-model="vm.leaveData.comment" cols="30" rows="3" class="form-control"  readonly="readonly"></textarea>
+							  </div>
+							</div>
+							<div class="form-group">
+					          <div class="col-lg-6 col-lg-offset-4">
+					            <button type="submit" class="btn btn-primary" ng-disabled="leaveForm.$invalid">Delete</button>
+					          </div>
+					        </div>
+					        <div ng-show="vm.message" class="alert alert-dismissible" ng-class="{ 'alert-success' : vm.success == true, 'alert-danger' : vm.success == false }" >
+					          <button type="button" class="close" data-dismiss="alert">×</button>
+					          <p class="text-center"><strong>{{ vm.message }}</strong></p>
+					        </div>
+					        
+					        
+			   			</fieldset>
+			   		</form>
+				</div>
+			</div>		
+		</div>
+	</div>
+</div>

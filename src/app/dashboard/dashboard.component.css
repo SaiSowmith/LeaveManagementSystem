@@ -1,0 +1,75 @@
+
+.bg{
+    background-image: url("./../../../images/bg2.jpg");
+    background-size: cover;
+    width:auto;
+}
+h1{
+    font-family: 'Days One', sans-serif;
+}
+h2{
+    color:red;
+    font-family: 'Rye', cursive;}
+
+h3{
+    color:green;
+
+    font-family: 'Butcherman', cursive;
+}
+
+main{
+    background-color:rgb(177, 221, 238);
+
+}
+a{
+    cursor: pointer;
+}
+button{
+color: rgb(0, 17, 248);
+}
+
+button{
+    cursor: pointer;
+}
+
+.starter-template{
+    background-color:rgb(0, 217, 255);
+}
+
+
+
+
+/* Remove the navbar's default margin-bottom and rounded borders */ 
+.navbar {
+    margin-bottom: 0;
+    padding: 0px;
+    margin-top: 0px;
+
+    border-radius: 0.1;
+  }
+  
+  /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+  .row.content {height: 715px}
+  
+  /* Set gray background color and 100% height */
+  .sidenav {
+    padding-top: 20px;
+    background-color: #f1f1f1;
+    height: 100%;
+  }
+  
+  /* Set black background color, white text and some padding */
+  footer {
+    background-color: #555;
+    color: white;
+    padding: 5px;
+  }
+  
+  /* On small screens, set height to 'auto' for sidenav and grid */
+  @media screen and (max-width: 767px) {
+    .sidenav {
+      height: auto;
+      padding: 15px;
+    }
+    .row.content {height:auto;} 
+  }

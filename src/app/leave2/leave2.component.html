@@ -1,0 +1,160 @@
+<p>
+  leave2 works!
+</p>
+
+<body>
+  <form ngNativeValidate #f="ngForm" (ngSubmit)="save(f.value)" class="form-horizontal">
+<fieldset>
+
+<h1>Leave Request Form</h1>
+
+<div class="form-group"  >
+  <label  for="select" >Company Name</label>
+<div class="col-lg-6">
+    <select #company="ngModel" [(ngModel)] ="leavesStatus.company" class="form-control" id="company" name="company" required>
+      <option value="" disabled selected>Select</option>
+    <option value="Company_India">Company_India</option>
+    <option value="Company_USA">Company_USA</option>
+    </select>
+    <div class=" alert alert-danger" *ngIf ="company.touched && company.invalid">
+        * CompanyName is required
+    </div>
+</div>
+</div>
+
+<div class="form-group">
+<label class="col-md-4 control-label" for="Name">Name</label>  
+<div class="col-md-4">
+<input #name="ngModel" [(ngModel)] ="leavesStatus.name" id="name" name="name" type="text" placeholder="Enter your name" class="form-control input-md" required [minlength]="5">
+<div class="alert alert-danger" *ngIf="name.touched && name.invalid" >
+  <div *ngIf="name.errors.required"> *Name is required</div>
+  <div *ngIf="name.errors.min"> *Minimum length should be 5</div>
+
+</div>  
+</div>
+</div>
+
+<div class="form-group">
+    <label class="control-label col-sm-2" for="idcard">ID Card No  </label>
+    <div class="col-sm-4"> 
+      <input #id="ngModel" [(ngModel)] ="leavesStatus.id" type="number" class="form-control" id="id" name="id" placeholder="Enter your idcard num" required [min] ="0">
+      <div class="alert alert-danger" *ngIf="id.touched && id.invalid" >
+        <div *ngIf="id.errors.required"> *Name is required</div>
+        <div *ngIf="id.errors.min"> *Id should be positive</div>
+      
+      </div>  
+    </div>
+</div>
+
+<div class="form-group"  >
+  <label class="col-md-4 control-label" for="select" >Type of leave</label>
+<div class="col-md-4">
+    <select #typeofleave="ngModel" [(ngModel)] ="leavesStatus.typeofleave" class="form-control" id="typeofleave" name="typeofleave" required>
+    <option value="" disabled selected>Select</option>
+    <option value="Sick Leave">Sick Leave (Illness or Injury)</option>
+    <option value="Personal Leave">Personal Leave</option>
+    <option value="Emergency Leave">Emergency Leave</option>
+    <option value="Maternity Leave">Maternity Leave</option>
+    <option value="Leave without pay(LOP)">Leave without pay(LOP)</option>
+    </select>
+    <div class=" alert alert-danger" *ngIf ="typeofleave.touched && typeofleave.invalid">
+        * Type of Leave is required
+    </div>
+</div>
+</div>
+
+
+<div class="form-group">
+    <label class="col-md-4 control-label" for="totalleave">Total leave required</label>  
+    <div class="col-md-4">
+    <input #totalleave="ngModel" [(ngModel)] ="leavesStatus.totalleave" id="totalleave" name="totalleave" type="number" placeholder="Enter no of leaves " class="form-control input-md" required >
+    <div class="alert alert-danger" *ngIf="totalleave.touched && totalleave.invalid" >
+      <div *ngIf="totalleave.errors.required"> *Total Leaves is required</div>    
+    </div> 
+    </div>
+    </div>
+    <div class="form-group"  >
+      <label  for="select" >Day Type</label>
+    <div class="col-lg-6">
+        <select #dayType="ngModel" [(ngModel)] ="leavesStatus.dayType" class="form-control" id="dayType" name="dayType" required>
+          <option value="" disabled selected>Select</option>
+        <option value="FullDay">Full Day</option>
+        <option value="Morning">Morning</option>
+        <option value="Afternoon">Afternoon</option>
+
+        </select>
+        <div class=" alert alert-danger" *ngIf ="dayType.touched && dayType.invalid">
+            * DayType is required
+        </div>
+    </div>
+    </div>
+  
+  
+  <div class="form-group">
+  <label class="col-md-4 control-label" for="reason">Reason for Leave</label>
+  <div class="col-md-4">                     
+    <textarea #reason="ngModel" [(ngModel)] ="leavesStatus.reason" class="form-control" id="reason" name="reason" placeholder="Enter your reason"></textarea>
+    <div class="alert alert-danger" *ngIf="reason.touched && reason.invalid" >
+      <div *ngIf="reason.errors.required"> *Reason is required</div>    
+    </div> 
+  </div>
+  </div>
+
+<div class="form-group">
+<label class="col-md-4 control-label" for="leavefrom">Leave required From: (Date)</label>  
+<div class="col-md-4">
+<input #leavefrom="ngModel" [(ngModel)] ="leavesStatus.totalleave" id="calendar" name="leavefrom" type="date" placeholder="" class="form-control input-md" required>
+<div class="alert alert-danger" *ngIf="leavefrom.touched && leavefrom.invalid" >
+  <div *ngIf="leavefrom.errors.required"> *Start of Leave is required</div>    
+</div> 
+</div>
+</div>
+
+<div class="form-group">
+    <label class="col-md-4 control-label" for="leaveto">Leave required To: (Date) </label>  
+    <div class="col-md-4">
+    <input #leaveto="ngModel" [(ngModel)] ="leavesStatus.leaveto" id="calendar" name="leaveto" type="date" placeholder="" class="form-control input-md" required>
+    <div class="alert alert-danger" *ngIf="leavto.touched && leavto.invalid" >
+      <div *ngIf="leavto.errors.required"> *End of Leave is required</div>    
+    </div> 
+    </div>
+    </div>
+
+
+
+    <div class="form-group"  ng-class="{ 'has-error' : leaveForm.leave_type.$invalid && !leaveForm.leave_type.$pristine }">
+      <label for="select" >Grant</label>
+      <div class="col-lg-6">
+        <select #status="ngModel" [(ngModel)] ="leavesStatus.status" class="form-control" id="status" name="status" required>
+          <option value="" disabled selected>Select</option>
+        <option value="approve">Approve</option>
+        <option value="deny">Deny</option>
+      </select>
+      </div>
+    </div>    
+
+
+
+<div class="form-group">
+<label class="col-md-4 control-label" for="submit"></label>
+<div class="col-md-4">
+  <button id="submit" name="submit" class="btn btn-primary">Submit</button>
+</div>
+</div>
+
+</fieldset>
+</form>
+<script type="text/javascript">
+  </script>
+</body>
+
+
+
+
+
+
+
+ 
+
+
+      

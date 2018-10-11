@@ -1,0 +1,250 @@
+<link href="https://fonts.googleapis.com/css?family=Ewert|Zilla+Slab+Highlight" rel="stylesheet">
+
+
+
+<div class="container-fluid text-center">
+  <div class="row content">
+
+    <div class="row">
+      <div class="col-md-12 ">
+        <div class="page-header title-header">
+          <div class="row">
+            <div class="col-md-6">
+              <h2 class="text-left">Leave Confirmation Form</h2>
+            </div>
+            <div class="col-md-6">
+              <h4 class="text-right">Welcome {{appUser.email}} !</h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="well bs-component wrapper">
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+
+              <form ngNativeValidate #f="ngForm" (ngSubmit)="save(f.value)" class="form-horizontal" name="leaveForm"
+                novalidate>
+                <fieldset>
+
+                  <legend>Approve/Reject Leave</legend>
+                  <input type="hidden" value="{{vm.usr['id']}}" ng-init="vm.leaveData.emp_id=vm.usr['id']" />
+
+                  <div class="form-group">
+                    <label class="col-md-4 control-label">Company Name</label>
+                    <div class="col-md-4">
+                      <input type="text" name="company" id="company" value="{{leavesEdit.key}}" class="form-control" readonly="readonly">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-md-4 control-label">Department</label>
+                    <div class="col-md-4">
+                      <input type="text" value="{{vm.leaveData.department}}" class="form-control" readonly="readonly">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="select" class="col-lg-4 control-label">Leave Type</label>
+                    <div class="col-md-4">
+                      <input type="text" name="start_date" value="{{vm.leaveData.leave_type}}" class="form-control" readonly="readonly">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-lg-4 control-label">Start Date</label>
+                    <div class="col-md-4">
+                      <input type="text" name="start_date" value="{{vm.leaveData.start_date}}" class="form-control" readonly="readonly">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-lg-4 control-label">End Date</label>
+                    <div class="col-md-4">
+                      <input type="text" name="end_date" value="{{vm.leaveData.end_date}}" class="form-control" readonly="readonly">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-lg-4 control-label">Reason:</label>
+                    <div class="col-lg-6">
+                      <textarea name="reason" id="reason" cols="30" rows="3" class="form-control" readonly="readonly">{{vm.leaveData.reason}}</textarea>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label class="col-md-4 control-label" for="select">Grant </label>
+                    <div class="col-md-4">
+                      <select #status="ngModel" [(ngModel)]="leavesEdit.status" class="form-control" id="status" name="status"
+                        required>
+                        <option value="" disabled selected>Select</option>
+                        <option value="approve">Approve</option>
+                        <option value="deny">Deny</option>
+                      </select>
+                      <div class=" alert alert-danger" *ngIf="status.touched && status.invalid">
+                        * Grant Permission is required
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-lg-4 control-label">Comment:</label>
+                    <div class="col-lg-6">
+                      <textarea #comment="ngModel" [(ngModel)]="leavesEdit.comment" name="comment" id="comment" cols="30"
+                        rows="3" class="form-control">
+
+                      </textarea>
+                    </div>
+                    <div class=" alert alert-danger" *ngIf="comment.touched && comment.invalid">
+                      * Comment on Grant Permission is required
+                    </div>
+                  </div>
+
+<!-- 22222222222 -->
+                  <!-- <div class="form-group">
+                    <label class="col-md-4 control-label" for="select">Company Name</label>
+                    <div class="col-lg-4">
+                      <select #company="ngModel" [(ngModel)]="leavesEdit.company" class="form-control" id="company"
+                        name="company" required>
+                        <option value="" disabled selected>Select</option>
+                        <option value="Company_India">Company_India</option>
+                        <option value="Company_USA">Company_USA</option>
+                      </select>
+                      <div class=" alert alert-danger" *ngIf="company.touched && company.invalid">
+                        * CompanyName is required
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-md-4 control-label" for="Name">Name</label>
+                    <div class="col-md-4">
+                      <input #name="ngModel" [(ngModel)]="leavesEdit.name" id="name" name="name" type="text"
+                        placeholder="Enter your name" class="form-control input-md" required [minlength]="5">
+                      <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
+                        <div *ngIf="name.errors.required"> *Name is required</div>
+                        <div *ngIf="name.errors.min"> *Minimum length should be 5</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-md-4 control-label" for="idcard">ID Card No </label>
+                    <div class="col-sm-4">
+                      <input #id="ngModel" [(ngModel)]="leavesEdit.id" type="number" class="form-control" id="id" name="id"
+                        placeholder="Enter your idcard num" required [min]="0">
+                      <div class="alert alert-danger" *ngIf="id.touched && id.invalid">
+                        <div *ngIf="id.errors.required"> *Name is required</div>
+                        <div *ngIf="id.errors.min"> *Id should be positive</div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label class="col-md-4 control-label" for="select">Type of leave</label>
+                    <div class="col-md-4">
+                      <select #typeofleave="ngModel" [(ngModel)]="leavesEdit.typeofleave" class="form-control" id="typeofleave"
+                        name="typeofleave" required>
+                        <option value="" disabled selected>Select</option>
+                        <option value="Sick Leave">Sick Leave (Illness or Injury)</option>
+                        <option value="Personal Leave">Personal Leave</option>
+                        <option value="Emergency Leave">Emergency Leave</option>
+                        <option value="Maternity Leave">Maternity Leave</option>
+                        <option value="Loss of pay(LOP)">Loss of pay(LOP)</option>
+                      </select>
+                      <div class=" alert alert-danger" *ngIf="typeofleave.touched && typeofleave.invalid">
+                        * Type of Leave is required
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label class="col-md-4 control-label" for="totalleave">Total leave required</label>
+                    <div class="col-md-4">
+                      <input #totalleave="ngModel" [(ngModel)]="leavesEdit.totalleave" id="totalleave" name="totalleave"
+                        type="number" placeholder="Enter no of leaves " class="form-control input-md" required>
+                      <div class="alert alert-danger" *ngIf="totalleave.touched && totalleave.invalid">
+                        <div *ngIf="totalleave.errors.required"> *Total Leaves is required</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-md-4 control-label" for="select">Day Type</label>
+                    <div class="col-md-4">
+                      <select #dayType="ngModel" [(ngModel)]="leavesEdit.dayType" class="form-control" id="dayType"
+                        name="dayType" required>
+                        <option value="" disabled selected>Select</option>
+                        <option value="FullDay">Full Day</option>
+                        <option value="Morning">Morning</option>
+                        <option value="Afternoon">Afternoon</option>
+                      </select>
+                      <div class=" alert alert-danger" *ngIf="dayType.touched && dayType.invalid">
+                        * DayType is required
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label class="col-md-4 control-label" for="reason">Reason for Leave</label>
+                    <div class="col-md-4">
+                      <textarea #reason="ngModel" [(ngModel)]="leavesEdit.reason" class="form-control" id="reason" name="reason"
+                        placeholder="Enter your reason"></textarea>
+                      <div class="alert alert-danger" *ngIf="reason.touched && reason.invalid">
+                        <div *ngIf="reason.errors.required"> *Reason is required</div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label class="col-md-4 control-label" for="leavefrom">Leave required From: (Date)</label>
+                    <div class="col-md-4">
+                      <input class="alert-input date-input" #leavefrom="ngModel" [(ngModel)]="leavesEdit.leavefrom" id="calendar"
+                        [min]="today" name="leavefrom" type="date" placeholder="" class="form-control input-md"
+                        required>
+                      <div class="alert alert-danger" *ngIf="leavefrom.touched && leavefrom.invalid">
+                        <div *ngIf="leavefrom.errors.required"> *Start of Leave is required</div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label class="col-md-4 control-label" for="leaveto">Leave required To: (Date) </label>
+                    <div class="col-md-4">
+                      <input #leaveto="ngModel" [(ngModel)]="leavesEdit.leaveto" id="calendar" name="leaveto" type="date"
+                        placeholder="" class="form-control input-md" required>
+                      <div class="alert alert-danger" *ngIf="leavto.touched && leavto.invalid">
+                        <div *ngIf="leavto.errors.required"> *End of Leave is required</div>
+                      </div>
+                    </div>
+                  </div> -->
+
+                  <div class="form-group">
+                    <div class="col-lg-6 col-lg-offset-4">
+                      <button type="submit" class="btn btn-primary" ng-disabled="leaveForm.$invalid">Update</button>
+                      <button routerLink="/home" class="btn btn-info">Back</button>
+                    </div>
+                  </div>
+
+                  <div ng-show="vm.message" class="alert alert-dismissible" ng-class="{ 'alert-success' : vm.success == true, 'alert-danger' : vm.success == false }">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <p class="text-center"><strong>{{ vm.message }}</strong></p>
+                  </div>
+
+                </fieldset>
+              </form>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
